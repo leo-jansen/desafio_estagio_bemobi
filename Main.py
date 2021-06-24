@@ -6,7 +6,8 @@ from Usuario import Usuario
 # metodo main
 def main():
   usuarios = []
-  arquivo = open("dados/log.txt", "r")
+  caminho_arquivo = input("Digite o caminho completo do txt(caminho_do_arquivo/arquivo.txt):")
+  arquivo = open(caminho_arquivo, "r")
 
   # percorre o arquivo de linha em linha, separando o contudo da linha e adcinando um 
   # novo usuario com os dados da linha da linha capturada
@@ -41,6 +42,7 @@ def main():
   # percorre a lista de codigo e depois a de usuarios verifica se o codigo do usuario é igual
   # ao codigo do momento, se for soma 1 na lista de usuarios_pais no mesmo indice do codigo na
   # lista dele, verifica se o status é assinado e soma um na mesma logica 
+  saidas = []
   for codigo in codigos:
     indice = codigos.index(codigo)
     for usuario in usuarios:
@@ -48,8 +50,13 @@ def main():
         usuarios_pais[indice] += 1
         if usuario.status == "assinado":
           usuarios_ativos[indice] += 1
-    # printa o pais, usuarios daquele pais, usuarios ativos do pais 
-    print("{}, {}, {}".format(Usuario.estado(codigo), usuarios_pais[indice], usuarios_ativos[indice]))
+    # adiciona a linha de saida no vetor de saidas 
+    saidas.append("{}, {}, {}\n".format(Usuario.estado(codigo), usuarios_pais[indice], usuarios_ativos[indice]))
+    
+  # escreve no arquivo as saidas que foram adicionadas na lista de saida
+  with open("saida.txt", "w") as arquivo:
+    for saida in saidas:
+      arquivo.write(saida)
 
 if __name__ == "__main__":
   main()
