@@ -43,3 +43,5 @@ Linux:
   python3 local_do_arquivo/Main.py
 ```
 Obs: na parte onde está escrito ```local_do_arquivo``` alterar para o caminho onde o arquivo Main.py está em seu sistema
+
+O resultado do programa ficará em um arquivo chamado ```saida.txt``` que vai está no mesmo caminho onde se encontra o arquivo ``Main.py``
